@@ -21,7 +21,7 @@ function setupScene({
   const camera = getCamera()
   const scene = getScene()
 
-  renderer.setClearColor("#101010", 1)
+  renderer.setClearColor("#ffffff", 1)
 
   camera.lookAt(new THREE.Vector3())
 

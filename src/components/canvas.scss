@@ -2,7 +2,15 @@ body {
     margin: 0;
 }
 
+#gatsby-focus-wrapper {
+    background: url(https://cdna.artstation.com/p/assets/images/images/030/593/484/large/grafit-studio-676767.jpg?1601057001);
+    background-size: cover;
+}
+
 canvas {
     display: block;
     cursor: grab;
+    mix-blend-mode: screen;
+    filter: blur(3px) contrast(10px);
+    -webkit-filter: blur(3px) contrast(10px);
 }

@@ -23,7 +23,6 @@ function setShaderBeforeCompile(shaderFromMaterial) {
 
     if (uniforms) {
         assignObjectKeys(shaderFromMaterial.uniforms, uniforms)
-        debugger
         material.userData.shader = shaderFromMaterial
     }
 }
