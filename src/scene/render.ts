@@ -1,26 +1,28 @@
 // import * as THREE from "three"
 
 import setupScene from "./setupScene"
-import light from "../scene/objects/light/mesh"
-import character from "../scene/objects/character/mesh"
-import infiniteGrigHelper from "./utils/THREE.InfiniteGridHelper"
+import getLight from "./objects/light/mesh"
+import getCharacter from "./objects/character/mesh"
+import getInfiniteGrigHelper from "./utils/THREE.InfiniteGridHelper"
+import getDanceBall from "./objects/danceBall/mesh"
 
 const objects = { character: { update: null } }
+let danceBall
 
-function preRender({
-    scene,
-    // renderer
-}) {
-    light(scene)
-    character(scene).then(update => objects.character.update = update)
-    infiniteGrigHelper(scene)
+function preRender({ scene }) {
+    getLight(scene)
+    getCharacter(scene).then(update => objects.character.update = update)
+    // getInfiniteGrigHelper(scene)
+    danceBall = getDanceBall(scene)
 }
 
-function onAnimation({
-    // scene,
-    // renderer
-}) {
-    objects.character.update && objects.character.update()
+function onAnimation() {
+    objects.character.update && objects.character.update(0.1)
+    const danceBallShader = danceBall.material.userData.shader
+    if (danceBallShader) {
+        const iTime = danceBallShader.uniforms.iTime
+        if(iTime) iTime.value = performance.now() / 1000
+    }
 }
 
 export default function render() {
